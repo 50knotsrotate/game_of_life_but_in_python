@@ -1,7 +1,5 @@
-import pygame
-from cell import Cell
 from constants import *
-
+from cell import Cell
 def init_grid():
     grid = []
     for i in range(grid_size):
@@ -18,10 +16,19 @@ def init_grid():
         grid.append(_temp)
     return grid
 
-# def draw_grid(grid):
-#     for i in range(grid_size):
-#         for j in range(grid_size):
-#             grid[j][i].draw()
+def update_all_cells(grid):
+     for i in range(grid_size):
+        for j in range(grid_size):
+            grid[j][i].update(grid)
+            
+def reset_new_cell_status(grid):
+    for i in range(grid_size):
+        for j in range(grid_size):
+            grid[j][i].status = grid[j][i].new_status
+            grid[j][i].new_status = None
 
 
-
+def draw_grid(grid, screen):
+    for i in range(grid_size):
+        for j in range(grid_size):
+            grid[j][i].draw(screen)
